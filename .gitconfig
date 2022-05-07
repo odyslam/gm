@@ -1,0 +1,56 @@
+[user]
+  email = odyslam@gmail.com
+  name = Odysseas Lamtzidis
+  signingKey = Odysseas Lamtzidis <odyslam@gmail.com>
+[github]
+  user = OdysLam
+
+[color]
+  branch = auto
+  diff = auto
+  status = auto
+
+[color "branch"]
+  current = yellow reverse
+  local = yellow
+  remote = green
+
+[color "diff"]
+  meta = yellow
+  frag = magenta
+  old = red
+  new = green
+
+[color "status"]
+  added = yellow
+  changed = green
+  untracked = cyan
+
+[core]
+  editor = nvim
+
+[alias]
+  b = branch -v
+  c = commit -v
+  s = status -sb
+  st = status
+  co = checkout
+  d = diff --word-diff=color
+  l = log --stat
+  ll = log -p
+  lol = log --graph --decorate --pretty=oneline --abbrev-commit
+  lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
+  hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+  changes = log -c --reverse
+
+[gpg]
+  program = gpg
+
+[commit]
+  gpgsign = true
+
+[pull]
+  ff = only
+
+[init]
+  defaultBranch = master
