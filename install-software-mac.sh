@@ -1,6 +1,7 @@
 install_software_mac() {
   if [[ $DEV_TOOLCHAIN == "true" ]]; then
     # Add radicle tap
+    message "Adding brew taps.."
     brew tap radicle/cli https://seed.alt-clients.radicle.xyz/radicle-cli-homebrew.git
     apps=(
       tmux
@@ -26,7 +27,7 @@ install_software_mac() {
       hadolint
       asciinema
     )
-  message "Brew will install the following cli apps: $apps"
+  message "brew installing the following software: $apps"
   for app in ${apps[*]}
     do
       brew install "${app}"
@@ -71,7 +72,7 @@ install_software_mac() {
       balenaetcher
       ledger-live
     )
-    message "Brew will install the following GUI apps (casks): ${casks}"
+    message "brew installing the following GUI apps (casks): ${casks}"
     for app in ${casks[*]}
       do
         brew install --cask "${cask}"
@@ -79,6 +80,7 @@ install_software_mac() {
   fi
   appstore=(
     magnet
+    streaks
   )
-  message "The following apps will need to be installed via the app-store: ${appstore}"
+  message "The following apps will need to be installed manually via the app-store: ${appstore}"
 }

@@ -93,6 +93,8 @@ if [[ ! $REPLY =~ ^[Yy]$ ]]
 then
     exit 1
 fi
+# Print an empty line
+echo
 
 if [[ $(uname) == 'Darwin'* ]]; then
   message "MacOS detected"
@@ -101,6 +103,7 @@ if [[ $(uname) == 'Darwin'* ]]; then
     /usr/bin/ruby -e \
       "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
   fi
+  message "brew already installed, skipping.."
   install_software_mac
 elif [[ $(uname) == 'Linux' ]]; then
   message "Linux detected"
