@@ -9,7 +9,7 @@ A script to setup a Linux or MacOS system with:
 
 Run `./gm.sh -h`
 
-[![asciicast](https://asciinema.org/a/492843.svg)](https://asciinema.org/a/492843)
+<img width="1834" alt="image" src="https://user-images.githubusercontent.com/13405632/167273755-eed58bfa-6114-4d62-a10b-a2883ef0154f.png">
 
 ## License
 
