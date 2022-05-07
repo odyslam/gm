@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
 sync(){
-  echo $1
   if [[ $1 == "local" ]]; then
     sync_local_to_repo
   elif [[ $1 == "repo" ]] || [[ $1 == "repository" ]]; then

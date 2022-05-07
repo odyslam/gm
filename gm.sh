@@ -72,8 +72,8 @@ while getopts 'adgths' OPTION; do
 done
 if [ $OPTIND -eq 1 ]; then
   echo
-  warning "No options were passed. Please run the script again and pass an option"
-  message "Pass -h to print all available options"
+  warning "No options were passed"
+  message "Use '-h' to print all available options"
   exit 1
 fi
 welcome
