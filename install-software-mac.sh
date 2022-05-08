@@ -90,12 +90,16 @@ install_software_mac() {
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
     # Finally, install custom ZSH plugins
     install_custom_zsh_plugins
+    install_custom_fonts
   fi
+
+
 
   appstore=(
     magnet
     streaks
   )
+
   message "The following apps will need to be installed manually via the app-store: ${appstore[*]}"
 }
 
@@ -105,4 +109,15 @@ install_custom_zsh_plugins(){
   git clone https://github.com/popstas/zsh-command-time.git ~/.oh-my-zsh/custom/plugins/command-time
   git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
   git clone https://github.com/jeffreytse/zsh-vi-mode $ZSH_CUSTOM/plugins/zsh-vi-mode
+}
+
+install_custom_fonts(){
+  # clone
+  git clone https://github.com/powerline/fonts.git --depth=1
+  # install
+  cd fonts
+  ./install.sh
+  # clean-up a bit
+  cd ..
+  rm -rf fonts
 }
