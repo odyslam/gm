@@ -109,6 +109,7 @@ install_software_mac() {
   appstore=(
     magnet
     streaks
+    spark
   )
 
   message "The following apps will need to be installed manually via the app-store: ${appstore[*]}"
