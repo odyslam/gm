@@ -109,6 +109,7 @@ message "GUI apps:              ${TPUT_BOLD}$GUI${TPUT_RESET}"
 message "Dotfiles:              ${TPUT_BOLD}$DOTFILES${TPUT_RESET}"
 message "Development Toolchain: ${TPUT_BOLD}$DEV_TOOLCHAIN${TPUT_RESET}"
 message "System Setup:          ${TPUT_BOLD}$SYSTEM_SETUP${TPUT_RESET}"
+warning "'sudo' may be required during the installation process. A prompt will ask your for your password"
 
 # Read input and advance only if user agrees
 read -p "Ready to Install? [y/n] " -n 1 -r
@@ -118,7 +119,7 @@ then
 fi
 # Print an empty line
 echo
-
+echo
 # Install apps and toolchain based on the OS type and then  install the common
 # If macOS, it uses brew as the package manager
 # If Linux, it depends:
