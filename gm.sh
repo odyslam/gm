@@ -8,6 +8,7 @@ source ./install-software-eth.sh
 source ./install-software-common.sh
 source ./sync.sh
 source ./terminal_helpers.sh
+source ./system_setup.sh
 
 # Intro
 
@@ -45,7 +46,22 @@ EOF
 }
 
 print_usage(){
-  announce "gm.sh Usage"
+  echo
+  cat << "EOF"
+                          .         .
+     ,o888888o.          ,8.       ,8.                    8 8888      88    d888888o.           .8.           ,o888888o.    8 8888888888
+    8888     `88.       ,888.     ,888.                   8 8888      88  .`8888:' `88.        .888.         8888     `88.  8 8888
+ ,8 8888       `8.     .`8888.   .`8888.                  8 8888      88  8.`8888.   Y8       :88888.     ,8 8888       `8. 8 8888
+ 88 8888              ,8.`8888. ,8.`8888.                 8 8888      88  `8.`8888.          . `88888.    88 8888           8 8888
+ 88 8888             ,8'8.`8888,8^8.`8888.                8 8888      88   `8.`8888.        .8. `88888.   88 8888           8 888888888888
+ 88 8888            ,8' `8.`8888' `8.`8888.               8 8888      88    `8.`8888.      .8`8. `88888.  88 8888           8 8888
+ 88 8888   8888888 ,8'   `8.`88'   `8.`8888.              8 8888      88     `8.`8888.    .8' `8. `88888. 88 8888   8888888 8 8888
+ `8 8888       .8',8'     `8.`'     `8.`8888.             ` 8888     ,8P 8b   `8.`8888.  .8'   `8. `88888.`8 8888       .8' 8 8888
+    8888     ,88',8'       `8        `8.`8888.              8888   ,d8P  `8b.  ;8.`8888 .888888888. `88888.  8888     ,88'  8 8888
+     `8888888P' ,8'         `         `8.`8888.              `Y88888P'    `Y8888P ,88P'.8'       `8. `88888.  `8888888P'    8 888888888888
+EOF
+  echo
+  echo
   message "${TPUT_BOLD}-g${TPUT_RESET}: Install GUI applications (e.g slack)"
   message "${TPUT_BOLD}-d${TPUT_RESET}: Install dotfiles"
   message "${TPUT_BOLD}-t${TPUT_RESET}: Install development toolchain"
@@ -59,13 +75,14 @@ GUI="false"
 DOTFILES="false"
 DEV_TOOLCHAIN="false"
 
-while getopts 'adgths' OPTION; do
+while getopts 'adgthsyss' OPTION; do
   case "${OPTION}" in
-    a) GUI="true" && DEV_TOOLCHAIN="true" && DOTFILES="true";;
+    a) GUI="true" && DEV_TOOLCHAIN="true" && DOTFILES="true" SYSTEM_SETUP='true';;
     d) DOTFILES="true";;
     g) GUI="true";;
     t) DEV_TOOLCHAIN="true";;
-    s) SYNC="true";;
+    sy) SYNC="true";;
+    ss) SYSTEM_SETUP="true";;
     *) echo && warning "flag is not recognised. Please read usage:" && print_usage
       exit 1;;
   esac
@@ -86,6 +103,7 @@ message "The following software suites will be installed on the system:"
 message "GUI apps:              ${TPUT_BOLD}$GUI${TPUT_RESET}"
 message "Dotfiles:              ${TPUT_BOLD}$DOTFILES${TPUT_RESET}"
 message "Development Toolchain: ${TPUT_BOLD}$DEV_TOOLCHAIN${TPUT_RESET}"
+message "System Setup:          ${TPUT_BOLD}$SYSTEM_SETUP${TPUT_RESET}"
 
 # Read input and advance only if user agrees
 read -p "Ready to Install? [y/n] " -n 1 -r
@@ -96,6 +114,13 @@ fi
 # Print an empty line
 echo
 
+# Install apps and toolchain based on the OS type and then  install the common
+# If macOS, it uses brew as the package manager
+# If Linux, it depends:
+# - Debian/Ubuntu:
+#   - They are known for having a very long release process and a lot of the packages
+#     on the main package repository are stale. I will propably use the package manager
+#     with the repositories that are managed by the project/software themselves.
 if [[ $(uname) == 'Darwin'* ]]; then
   message "MacOS detected"
   if ! [ -x "$(which brew)" ]; then
@@ -105,18 +130,26 @@ if [[ $(uname) == 'Darwin'* ]]; then
   fi
   message "brew already installed, skipping.."
   install_software_mac
+  if [[ "${SYSTEM_SETUP}" == "true" ]]; then
+    system_setup_mac
+  fi
 elif [[ $(uname) == 'Linux' ]]; then
   message "Linux detected"
   install_software_linux
+  if [[ "${SYSTEM_SETUP}" == "true" ]]; then
+    system_setup_linux
+  fi
 fi
 
 if [[ $DEV_TOOLCHAIN == "true" ]]; then
   install_software_eth
   install_software_common
 fi
+
 if [[ $DOTFILES == "true" ]]; then
   message "Installing dotfiles"
   message "Please visit ~/.zsh/zsh_secrets and populate your API keys"
   echo -e "export BALENA_TOKEN=\nexport ETHERSCAN_API_KEY\nexport ETH_RPC_URL=" > ~/.zsh/zsh_secrets
   sync local
 fi
+
