@@ -28,6 +28,8 @@ install_software_mac() {
       hadolint
       asciinema
       gh
+      fontconfig
+      nvim
     )
   message "brew installing the following software: ${apps[*]}"
   for app in ${apps[*]}
@@ -112,7 +114,7 @@ install_custom_zsh_plugins(){
 }
 
 install_custom_fonts(){
-  # clone
+  message "Installing Powerline Fonts"
   git clone https://github.com/powerline/fonts.git --depth=1
   # install
   cd fonts
