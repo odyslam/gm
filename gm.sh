@@ -128,11 +128,16 @@ echo
 #     on the main package repository are stale. I will propably use the package manager
 #     with the repositories that are managed by the project/software themselves.
 if [[ $(uname) == 'Darwin'* ]]; then
+# move to right
+defaults write com.apple.dock orientation right
+#restart Dock
+killall Dock
   message "MacOS detected"
   if ! [ -x "$(which brew)" ]; then
-    message "Installing brew"
-    /usr/bin/ruby -e \
-      "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+    message "Adding brew to path.."
+    export PATH=$PATH:/opt/homebrew/bin
+    message "Installing brew.."
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
   fi
   message "brew already installed, skipping.."
   install_software_mac
