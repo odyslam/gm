@@ -59,6 +59,7 @@ install_software_mac() {
       visual-studio-code
       balenaetcher
       ledger-live
+      gpg
     )
     message "brew installing the following GUI apps (casks): ${casks[*]}"
     for cask in ${casks[*]}
@@ -85,7 +86,10 @@ install_software_mac() {
     export ZSH=$HOME/.oh-my-zsh
     # Make sure it's a fresh in
     rm -rf ~/.oh-my-zsh
-    sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+    # https://github.com/ohmyzsh/ohmyzsh#unattended-install
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+    # Finally, install custom ZSH plugins
+    install_custom_zsh_plugins
   fi
 
   appstore=(
@@ -93,4 +97,12 @@ install_software_mac() {
     streaks
   )
   message "The following apps will need to be installed manually via the app-store: ${appstore[*]}"
+}
+
+install_custom_zsh_plugins(){
+  message "Installing custom ZSH plugins.."
+  git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+  git clone https://github.com/popstas/zsh-command-time.git ~/.oh-my-zsh/custom/plugins/command-time
+  git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+  git clone https://github.com/jeffreytse/zsh-vi-mode $ZSH_CUSTOM/plugins/zsh-vi-mode
 }
