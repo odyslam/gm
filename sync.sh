@@ -27,7 +27,7 @@ sync_repo_to_local(){
   message "It will copy the following dotfiles: ${dotfiles[*]}"
   for dotfile in ${dotfiles[*]}
     do
-      cp "~/${dotfile}" "${dotfile}"
+      cp "${HOME}/${dotfile}" "${dotfile}"
   done
   cp -R ~/.vim/ .vim/ 2>/dev/null
   cp -R ~/.config/nvim .config/nvim/
@@ -38,7 +38,7 @@ sync_local_to_repo(){
   message "It will copy the following dotfiles: ${dotfiles[*]}"
   for dotfile in ${dotfiles[*]}
     do
-      cp  "${dotfile}" "~/${dotfile}"
+      cp  "${dotfile}" "${HOME}/${dotfile}"
   done
   cp -R .vim ~/.vim 2>/dev/null
   cp -r .config/nvim/ ~/.config/nvim
