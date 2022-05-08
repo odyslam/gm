@@ -1,4 +1,4 @@
-# Odysseas' setup
+# GM Odysseas
 
 A script to setup a Linux or MacOS system with:
 - GUI & CLI apps
@@ -6,11 +6,16 @@ A script to setup a Linux or MacOS system with:
 - Dotfiles-
 
 ## Instructions
-
-Run `./gm.sh -h`
-
-<img width="1834" alt="image" src="https://user-images.githubusercontent.com/13405632/167273755-eed58bfa-6114-4d62-a10b-a2883ef0154f.png">
-
+```shell
+# help
+./gm.sh -h
+```
+![](https://i.imgur.com/msg8vCr.png)
+```shell
+# Install everything
+./gm.sh -a
+```
+![](https://i.imgur.com/7C6Hgs7.png)
 ## License
 
 MIT
