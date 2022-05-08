@@ -77,10 +77,10 @@ EOF
 
 # Installation types
 
-GUI="false"
-DOTFILES="false"
-DEV_TOOLCHAIN="false"
-
+GUI="${TPUT_RED}false${TPUT_RESET}"
+DOTFILES="${TPUT_RED}false${TPUT_RESET}"
+DEV_TOOLCHAIN="${TPUT_RED}false${TPUT_RESET}"
+SYSTEM="${TPUT_RED}false${TPUT_RESET}"
 while getopts 'gdtsauh' OPTION; do
   case "${OPTION}" in
     a) GUI="true" && DEV_TOOLCHAIN="true" && DOTFILES="true" SYSTEM_SETUP='true';;
@@ -110,10 +110,10 @@ if [[ "${UPDATE}" == "true" ]]; then
 fi
 
 message "The following software suites will be installed on the system:"
-message "GUI apps:              ${TPUT_BOLD}$GUI${TPUT_RESET}"
-message "Dotfiles:              ${TPUT_BOLD}$DOTFILES${TPUT_RESET}"
-message "Development Toolchain: ${TPUT_BOLD}$DEV_TOOLCHAIN${TPUT_RESET}"
-message "System Setup:          ${TPUT_BOLD}$SYSTEM_SETUP${TPUT_RESET}"
+message "GUI apps:              ${TPUT_BOLD}${TPUT_GREEN}$GUI${TPUT_RESET}"
+message "Dotfiles:              ${TPUT_BOLD}${TPUT_GREEN}$DOTFILES${TPUT_RESET}"
+message "Dev Toolchain:         ${TPUT_BOLD}${TPUT_GREEN}$DEV_TOOLCHAIN${TPUT_RESET}"
+message "System Setup:          ${TPUT_BOLD}${TPUT_GREEN}$SYSTEM_SETUP${TPUT_RESET}"
 warning "'sudo' may be required during the installation process. A prompt will ask your for your password"
 
 # Read input and advance only if user agrees
