@@ -24,9 +24,10 @@ dotfiles=(
 
 sync_repo_to_local(){
   announce "Copying system's dotfiles to this repository.."
+  message "It will copy the following dotfiles: ${dotfiles[*]}"
   for dotfile in ${dotfiles[*]}
     do
-      cp "~/.${dotfile}" "${dotfile}"
+      cp "~/${dotfile}" "${dotfile}"
   done
   cp -R ~/.vim/ .vim/ 2>/dev/null
   cp -R ~/.config/nvim .config/nvim/
@@ -34,9 +35,10 @@ sync_repo_to_local(){
 }
 sync_local_to_repo(){
   announce "Copying the dotfiles from this repository over to the system.."
+  message "It will copy the following dotfiles: ${dotfiles[*]}"
   for dotfile in ${dotfiles[*]}
     do
-      cp  "${dotfile}" "~/.${dotfile}"
+      cp  "${dotfile}" "~/${dotfile}"
   done
   cp -R .vim ~/.vim 2>/dev/null
   cp -r .config/nvim/ ~/.config/nvim

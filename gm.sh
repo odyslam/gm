@@ -7,8 +7,8 @@ source ./install-software-linux.sh
 source ./install-software-eth.sh
 source ./install-software-common.sh
 source ./sync.sh
-source ./terminal_helpers.sh
-source ./system_setup.sh
+source ./terminal-helpers.sh
+source ./system-setup.sh
 
 # Intro
 
@@ -65,8 +65,9 @@ EOF
   message "${TPUT_BOLD}-g${TPUT_RESET}: Install GUI applications (e.g slack)"
   message "${TPUT_BOLD}-d${TPUT_RESET}: Install dotfiles"
   message "${TPUT_BOLD}-t${TPUT_RESET}: Install development toolchain"
+  message "${TPUT_BOLD}-s${TPUT_RESET}: Output instructions to setup the system (configuration, peripherals, etc.)"
   message "${TPUT_BOLD}-a${TPUT_RESET}: Install all the above"
-  message "${TPUT_BOLD}-s${TPUT_RESET}: Sync the dotfiles in this repository to the system's"
+  message "${TPUT_BOLD}-u${TPUT_RESET}: Update the dotfiles in this repository to the system's"
 }
 
 # Installation types
@@ -75,26 +76,30 @@ GUI="false"
 DOTFILES="false"
 DEV_TOOLCHAIN="false"
 
-while getopts 'adgthsyss' OPTION; do
+while getopts 'gdtsau' OPTION; do
   case "${OPTION}" in
     a) GUI="true" && DEV_TOOLCHAIN="true" && DOTFILES="true" SYSTEM_SETUP='true';;
     d) DOTFILES="true";;
     g) GUI="true";;
     t) DEV_TOOLCHAIN="true";;
-    sy) SYNC="true";;
-    ss) SYSTEM_SETUP="true";;
+    u) UPDATE="true";;
+    s) SYSTEM_SETUP="true";;
     *) echo && warning "flag is not recognised. Please read usage:" && print_usage
       exit 1;;
   esac
 done
+
+# Check if no options were passed
 if [ $OPTIND -eq 1 ]; then
   echo
   warning "No options were passed"
   message "Use '-h' to print all available options"
   exit 1
 fi
+
 welcome
-if [[ "${SYNC}" == "true" ]]; then
+
+if [[ "${UPDATE}" == "true" ]]; then
   sync repo
   exit 1
 fi

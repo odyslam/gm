@@ -15,5 +15,3 @@ install_software_common(){
   cp target/release/headers ~/.cargo/headers
   cd .. && rm -rf headers
 }
-
-pipenv

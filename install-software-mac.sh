@@ -29,7 +29,7 @@ install_software_mac() {
       asciinema
       gh
     )
-  message "brew installing the following software: $apps"
+  message "brew installing the following software: ${apps[*]}"
   for app in ${apps[*]}
     do
       brew install "${app}"
@@ -74,7 +74,7 @@ install_software_mac() {
       balenaetcher
       ledger-live
     )
-    message "brew installing the following GUI apps (casks): ${casks}"
+    message "brew installing the following GUI apps (casks): ${casks[*]}"
     for app in ${casks[*]}
       do
         brew install --cask "${cask}"
@@ -84,5 +84,5 @@ install_software_mac() {
     magnet
     streaks
   )
-  message "The following apps will need to be installed manually via the app-store: ${appstore}"
+  message "The following apps will need to be installed manually via the app-store: ${appstore[*]}"
 }
