@@ -12,28 +12,32 @@ sync(){
   fi
 }
 
+dotfiles=(
+  .vimrc
+  .zshrc
+  .zshenv
+  .tmux.conf.local
+  .gitconfig
+  .gitignore
+  .dircolors
+)
+
 sync_repo_to_local(){
   announce "Copying system's dotfiles to this repository.."
-  cp ~/.vimrc .vimrc
-  cp ~/.zshrc .zshrc
-  cp ~/.zshenv .zshenv
-  cp ~/.tmux.conf.local .tmux.conf.local
-  cp ~/.gitconfig .gitconfig
-  cp ~/.gitignore .gitignore
-  cp ~/.dircolors .dircolors
+  for dotfile in ${dotfiles[*]}
+    do
+      cp "~/.${dotfile}" "${dotfile}"
+  done
   cp -R ~/.vim/ .vim/ 2>/dev/null
   cp -R ~/.config/nvim .config/nvim/
   cp -R ~/.config/coc .config/coc/
 }
 sync_local_to_repo(){
   announce "Copying the dotfiles from this repository over to the system.."
-  cp .vimrc ~/.vimrc
-  cp .zshrc ~/.zshrc
-  cp .zshenv ~/.zshenv
-  cp .tmux.conf.local ~/tmux.conf.local
-  cp .gitconfig ~/.gitconfig
-  cp .gitignore ~/.gitignore
-  cp .dircolors ~/.dircolors
+  for dotfile in ${dotfiles[*]}
+    do
+      cp  "${dotfile}" "~/.${dotfile}"
+  done
   cp -R .vim ~/.vim 2>/dev/null
   cp -r .config/nvim/ ~/.config/nvim
   cp -r .config/coc/ ~/.config/coc
