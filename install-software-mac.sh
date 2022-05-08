@@ -33,6 +33,8 @@ install_software_mac() {
       gpg
       magic-wormhole
       pinentry-mac
+      virtualenv
+      fd
     )
   message "brew installing the following software: ${apps[*]}"
   for app in ${apps[*]}
@@ -102,8 +104,6 @@ install_software_mac() {
     install_custom_zsh_plugins
     install_custom_fonts
   fi
-
-
 
   appstore=(
     magnet

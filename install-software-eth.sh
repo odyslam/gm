@@ -1,4 +1,4 @@
-install_software_eth(){
+pinstall_software_eth(){
   message "Installing Foundry.."
   curl -L https://foundry.paradigm.xyz | bash
   foundryup
