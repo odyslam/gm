@@ -18,6 +18,7 @@ dotfiles=(
   .zshenv
   .tmux.conf.local
   .gitconfig
+  .alacritty.yml
   .gitignore
   .dircolors
 )
