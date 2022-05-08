@@ -26,6 +26,7 @@ install_software_mac() {
       shellcheck
       hadolint
       asciinema
+      gh
     )
   message "brew installing the following software: $apps"
   for app in ${apps[*]}
