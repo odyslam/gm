@@ -160,8 +160,8 @@ fi
 
 if [[ $DOTFILES == "true" ]]; then
   message "Installing dotfiles"
-  message "Please visit ~/.zsh/zsh_secrets and populate your API keys"
-  echo -e "export BALENA_TOKEN=\nexport ETHERSCAN_API_KEY\nexport ETH_RPC_URL=" > ~/.zsh/zsh_secrets
+  message "Please visit ~/.zsh_secrets and populate your API keys"
+  echo -e "export BALENA_TOKEN=\nexport ETHERSCAN_API_KEY\nexport ETH_RPC_URL=" > ~/.zsh_secrets
   sync local
 fi
 
