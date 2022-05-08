@@ -73,6 +73,7 @@ install_software_mac() {
       visual-studio-code
       balenaetcher
       ledger-live
+      clickup
     )
     message "brew installing the following GUI apps (casks): ${casks[*]}"
     for cask in ${casks[*]}
