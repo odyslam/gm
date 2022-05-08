@@ -80,7 +80,7 @@ EOF
 GUI="${TPUT_RED}false${TPUT_RESET}"
 DOTFILES="${TPUT_RED}false${TPUT_RESET}"
 DEV_TOOLCHAIN="${TPUT_RED}false${TPUT_RESET}"
-SYSTEM="${TPUT_RED}false${TPUT_RESET}"
+SYSTEM_SETUP="${TPUT_RED}false${TPUT_RESET}"
 while getopts 'gdtsauh' OPTION; do
   case "${OPTION}" in
     a) GUI="true" && DEV_TOOLCHAIN="true" && DOTFILES="true" SYSTEM_SETUP='true';;
