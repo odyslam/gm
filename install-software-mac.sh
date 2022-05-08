@@ -34,21 +34,7 @@ install_software_mac() {
     do
       brew install "${app}"
   done
-  message "Installing coreutils.."
-  export DOTFILES_BREW_PREFIX_COREUTILS=`brew --prefix coreutils`
-  set-config "DOTFILES_BREW_PREFIX_COREUTILS" "$DOTFILES_BREW_PREFIX_COREUTILS" "$DOTFILES_CACHE"
-  message "Installing xcode utils.."
-  xcode-select --install
-  message "Installing Oh my tmux.."
-  # Oh my tmux
-   cd
-   git clone https://github.com/gpakosz/.tmux.git
-   ln -s -f .tmux/.tmux.conf
-   cp .tmux/.tmux.conf.local .
-  # Oh my zsh
-  message "Installing Oh my zsh.."
-  sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-  fi
+
   if [[ $GUI == "true" ]]; then
     casks=(
       alacritty
@@ -75,10 +61,27 @@ install_software_mac() {
       ledger-live
     )
     message "brew installing the following GUI apps (casks): ${casks[*]}"
-    for app in ${casks[*]}
+    for cask in ${casks[*]}
       do
         brew install --cask "${cask}"
     done
+
+  message "Installing coreutils.."
+  export DOTFILES_BREW_PREFIX_COREUTILS=`brew --prefix coreutils`
+  set-config "DOTFILES_BREW_PREFIX_COREUTILS" "$DOTFILES_BREW_PREFIX_COREUTILS" "$DOTFILES_CACHE"
+  message "Installing xcode utils.."
+  xcode-select --install
+  message "Installing Oh my tmux.."
+  # Oh my tmux
+   cd
+   git clone https://github.com/gpakosz/.tmux.git
+   ln -s -f .tmux/.tmux.conf
+   cp .tmux/.tmux.conf.local .
+  # Oh my zsh
+  message "Installing Oh my zsh.."
+  sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+  fi
+
   fi
   appstore=(
     magnet
