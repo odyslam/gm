@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
 sync(){
-  echo $1
   if [[ $1 == "local" ]]; then
     sync_local_to_repo
   elif [[ $1 == "repo" ]] || [[ $1 == "repository" ]]; then
@@ -13,29 +12,36 @@ sync(){
   fi
 }
 
+dotfiles=(
+  .vimrc
+  .zshrc
+  .zshenv
+  .tmux.conf.local
+  .gitconfig
+  .alacritty.yml
+  .gitignore
+  .dircolors
+)
+
 sync_repo_to_local(){
   announce "Copying system's dotfiles to this repository.."
-  cp ~/.vimrc .vimrc
-  cp ~/.zshrc .zshrc
-  cp ~/.zshenv .zshenv
-  cp ~/.tmux.conf.local .tmux.conf.local
-  cp ~/.gitconfig .gitconfig
-  cp ~/.gitignore .gitignore
-  cp ~/.dircolors .dircolors
+  message "It will copy the following dotfiles: ${dotfiles[*]}"
+  for dotfile in ${dotfiles[*]}
+    do
+      cp "${HOME}/${dotfile}" "${dotfile}"
+  done
+  rm -rf .vim && rm -rf .config/nvim
   cp -R ~/.vim/ .vim/ 2>/dev/null
   cp -R ~/.config/nvim .config/nvim/
-  cp -R ~/.config/coc .config/coc/
 }
 sync_local_to_repo(){
   announce "Copying the dotfiles from this repository over to the system.."
-  cp .vimrc ~/.vimrc
-  cp .zshrc ~/.zshrc
-  cp .zshenv ~/.zshenv
-  cp .tmux.conf.local ~/tmux.conf.local
-  cp .gitconfig ~/.gitconfig
-  cp .gitignore ~/.gitignore
-  cp .dircolors ~/.dircolors
+  message "It will copy the following dotfiles: ${dotfiles[*]}"
+  for dotfile in ${dotfiles[*]}
+    do
+      cp  "${dotfile}" "${HOME}/${dotfile}"
+  done
+  rm -rf ~/.vim && rm -rf ~/.config/nvim
   cp -R .vim ~/.vim 2>/dev/null
   cp -r .config/nvim/ ~/.config/nvim
-  cp -r .config/coc/ ~/.config/coc
 }

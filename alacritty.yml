@@ -1,0 +1,15 @@
+font:
+    normal:
+        family: Meslo LG S for Powerline
+        style: Regular
+    bold:
+        family: Meslo LG S for Powerline
+        style: Bold
+    italic:
+        family: Meslo LG S for Powerline
+        style: Italic
+    bold_italic:
+        family: Meslo LG S for Powerline
+        style: Bold Italic
+    size: 12
+    use_thin_strokes: true

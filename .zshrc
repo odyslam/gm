@@ -134,7 +134,7 @@ ZSH_COMMAND_TIME_MIN_SECONDS=1
 plugins=(git docker copybuffer textmate tmux sudo zsh-syntax-highlighting zsh-autosuggestions command-time zsh-vi-mode)
 ZSH_TMUX_AUTOSTART="true"
 
-source $ZSH/oh-my-zsh.sh
+source ~/.oh-my-zsh/oh-my-zsh.sh
 
 # Quote prompt
 quote_api_reply=$(curl -sS api.quotable.io/random)
