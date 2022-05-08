@@ -352,11 +352,10 @@ if has("nvim")
   Plug 'vim-ruby/vim-ruby'
   Plug 'skywind3000/asynctasks.vim'
   Plug 'skywind3000/asyncrun.vim'
-
   call plug#end()
 endif
 
-lua <<EOF
+lua << EOF
 require('gitsigns').setup {
   signs = {
     changedelete = { text = "│" }
