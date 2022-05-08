@@ -3,7 +3,7 @@ install_software_common(){
   curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
 
   message "Installing Rust.. via Rustup"
-  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs |sh -s -- -y
 
   message "Installing Typescript (globally).."
   npm install -g typescript
