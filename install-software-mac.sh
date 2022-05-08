@@ -32,6 +32,7 @@ install_software_mac() {
       nvim
       gpg
       magic-wormhole
+      pinentry-mac
     )
   message "brew installing the following software: ${apps[*]}"
   for app in ${apps[*]}
@@ -39,6 +40,12 @@ install_software_mac() {
       brew install "${app}"
   done
   fi
+
+  # This is required to use gpg signed commits and use git plugins in vim
+  # https://github.com/tpope/vim-fugitive/issues/1645
+  message "Adding pinentry to 'gpg-agent.conf'.."
+  echo "pinentry-program /usr/local/bin/pinentry-mac" >> ~/.gnupg/gpg-agent.conf
+  gpg-connect-agent reloadagent /bye
 
   if [[ $GUI == "true" ]]; then
     casks=(
