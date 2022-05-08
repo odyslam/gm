@@ -44,7 +44,7 @@ install_software_mac() {
   # This is required to use gpg signed commits and use git plugins in vim
   # https://github.com/tpope/vim-fugitive/issues/1645
   message "Adding pinentry to 'gpg-agent.conf'.."
-  echo "pinentry-program /usr/local/bin/pinentry-mac" >> ~/.gnupg/gpg-agent.conf
+  echo "pinentry-program /opt/homebrew/bin/pinentry" >> ~/.gnupg/gpg-agent.conf
   gpg-connect-agent reloadagent /bye
 
   if [[ $GUI == "true" ]]; then
