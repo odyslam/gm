@@ -134,9 +134,9 @@ echo
 #     with the repositories that are managed by the project/software themselves.
 if [[ $(uname) == 'Darwin'* ]]; then
   message "MacOS detected"
+  # Make sure the script can find brew
+  export PATH=$PATH:/opt/homebrew/bin
   if ! [ -x "$(which brew)" ]; then
-    message "Adding brew to path.."
-    export PATH=$PATH:/opt/homebrew/bin
     message "Installing brew.."
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
   fi
