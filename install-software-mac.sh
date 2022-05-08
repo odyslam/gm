@@ -2,6 +2,7 @@ install_software_mac() {
   if [[ $DEV_TOOLCHAIN == "true" ]]; then
     # Add radicle tap
     message "Adding brew taps.."
+    message "Although Git is already installed by xcode cli utils, it will be downloaded again and managed by brew"
     brew tap radicle/cli https://seed.alt-clients.radicle.xyz/radicle-cli-homebrew.git
     apps=(
       tmux
