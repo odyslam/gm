@@ -2,7 +2,7 @@ install_software_mac() {
   if [[ $DEV_TOOLCHAIN == "true" ]]; then
     # Add radicle tap
     message "Adding brew taps.."
-    message "Although Git is already installed by xcode cli utils, it will be downloaded again and managed by brew"
+    message "Although 'git' is already installed by xcode cli utils, it will be downloaded again and managed by brew"
     brew tap radicle/cli https://seed.alt-clients.radicle.xyz/radicle-cli-homebrew.git
     apps=(
       tmux
@@ -34,6 +34,7 @@ install_software_mac() {
     do
       brew install "${app}"
   done
+  fi
 
   if [[ $GUI == "true" ]]; then
     casks=(
@@ -64,29 +65,29 @@ install_software_mac() {
       do
         brew install --cask "${cask}"
     done
-
-  message "Installing coreutils.."
-  export DOTFILES_BREW_PREFIX_COREUTILS=`brew --prefix coreutils`
-  set-config "DOTFILES_BREW_PREFIX_COREUTILS" "$DOTFILES_BREW_PREFIX_COREUTILS" "$DOTFILES_CACHE"
-  message "Installing xcode utils.."
-  xcode-select --install
-  message "Installing Oh my tmux.."
-  # Oh my tmux
-   cd
-   git clone https://github.com/gpakosz/.tmux.git
-   ln -s -f .tmux/.tmux.conf
-   cp .tmux/.tmux.conf.local .
-  # Oh my zsh
-  message "Installing Oh my zsh.."
-  # Make sure that oh-my-zsh installs files for the current user, not root
-  # https://github.com/ohmyzsh/ohmyzsh/issues/8477
-  export ZSH=$HOME/.oh-my-zsh
-  # Make sure it's a fresh in
-  rm -rf ~/.oh-my-zsh
-  sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+  fi
+  if [[ $DEV_TOOLCHAIN == "true" ]]; then
+    message "Installing coreutils.."
+    export DOTFILES_BREW_PREFIX_COREUTILS=`brew --prefix coreutils`
+    set-config "DOTFILES_BREW_PREFIX_COREUTILS" "$DOTFILES_BREW_PREFIX_COREUTILS" "$DOTFILES_CACHE"
+    message "Installing xcode utils.."
+    xcode-select --install
+    message "Installing Oh my tmux.."
+    # Oh my tmux
+     cd
+     git clone https://github.com/gpakosz/.tmux.git
+     ln -s -f .tmux/.tmux.conf
+     cp .tmux/.tmux.conf.local .
+    # Oh my zsh
+    message "Installing Oh my zsh.."
+    # Make sure that oh-my-zsh installs files for the current user, not root
+    # https://github.com/ohmyzsh/ohmyzsh/issues/8477
+    export ZSH=$HOME/.oh-my-zsh
+    # Make sure it's a fresh in
+    rm -rf ~/.oh-my-zsh
+    sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
   fi
 
-  fi
   appstore=(
     magnet
     streaks
