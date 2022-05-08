@@ -30,6 +30,11 @@ install_software_mac() {
       gh
       fontconfig
       nvim
+      gpg
+      magic-wormhole
+      pinentry-mac
+      virtualenv
+      fd
     )
   message "brew installing the following software: ${apps[*]}"
   for app in ${apps[*]}
@@ -37,6 +42,13 @@ install_software_mac() {
       brew install "${app}"
   done
   fi
+
+  # This is required to use gpg signed commits and use git plugins in vim
+  # https://github.com/tpope/vim-fugitive/issues/1645
+  # https://byparker.com/blog/2021/gpg-pinentry-mac-git/
+  message "Adding pinentry to 'gpg-agent.conf'.."
+  echo "pinentry-program /opt/homebrew/bin/pinentry-mac" >> ~/.gnupg/gpg-agent.conf
+  gpgconf --kill gpg-agent
 
   if [[ $GUI == "true" ]]; then
     casks=(
@@ -61,7 +73,6 @@ install_software_mac() {
       visual-studio-code
       balenaetcher
       ledger-live
-      gpg
     )
     message "brew installing the following GUI apps (casks): ${casks[*]}"
     for cask in ${casks[*]}
@@ -94,8 +105,6 @@ install_software_mac() {
     install_custom_zsh_plugins
     install_custom_fonts
   fi
-
-
 
   appstore=(
     magnet
