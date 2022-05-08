@@ -56,6 +56,8 @@ set diffopt=filler,vertical,foldcolumn:0
 set statusline=%<%f\ (%{gitbranch#name()})\ %h%m%r%=%y\ \ %-14(%{&sw}:%{&sts}:%{&ts}%)%-14.(%l,%c%V%)\ %P
 set spelllang=en_us,en_gb
 set completeopt=menu
+let g:asyncrun_open = 6
+
 
 " We don't use tabs much, but at least try and show less cruft
 function! Tabline()
@@ -347,6 +349,8 @@ if has("nvim")
   Plug 'jparise/vim-graphql'
   Plug 'tpope/vim-fugitive'
   Plug 'vim-ruby/vim-ruby'
+  Plug 'skywind3000/asynctasks.vim'
+  Plug 'skywind3000/asyncrun.vim'
 
   call plug#end()
 endif

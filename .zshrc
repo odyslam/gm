@@ -28,28 +28,21 @@ bindkey '^R' history-incremental-search-backward
 # Foundry
 alias fb="forge build"
 alias ft="forge test"
-
-
-# Git
+# GitHub
 alias g='git'
 alias ga="git -a ."
 alias gc"git commit"
-
-
 # Cargo
 alias c="cargo"
 alias cc="cargo check"
 alias cb="cargo build"
 alias ct="cargo test"
 alias cl="cargo check --all && cargo test --all --all-features && cargo +nightly fmt -- --check && cargo +nightly clippy --all --all-features -- -D warnings"
-
 # Wrangler -- Cloudflare Workers
 alias wd="wrangler dev"
 alias wp="wrangler publish"
-
 # Javascript
 alias y="yarn"
-
 # Bash
 alias v="nvim"
 alias mk='make'
@@ -69,7 +62,6 @@ alias gac='gatsby clean'
 alias cat='bat'
 alias ls='exa'
 
-# Fancier Git
 function tree-git-ignore {
   local ignored=$(git ls-files -ci --others --directory --exclude-standard)
   local ignored_filter=$(echo "$ignored" \
