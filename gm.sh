@@ -125,7 +125,7 @@ fi
 # Print an empty line
 echo
 echo
-# Install apps and toolchain based on the OS type and then  install the common
+# Install apps and toolchain based on the OS type and then install the common
 # If macOS, it uses brew as the package manager
 # If Linux, it depends:
 # - Debian/Ubuntu:
@@ -160,8 +160,8 @@ fi
 
 if [[ $DOTFILES == "true" ]]; then
   message "Installing dotfiles"
-  message "Please visit ~/.zsh_secrets and populate your API keys"
-  echo -e "export BALENA_TOKEN=\nexport ETHERSCAN_API_KEY\nexport ETH_RPC_URL=" > ~/.zsh_secrets
+  message "Visit ~/.zsh_secrets and populate your API keys"
+  echo -e "export BALENA_TOKEN=\nexport ETHERSCAN_API_KEY=\nexport ETH_RPC_URL=" > ~/.zsh_secrets
   sync local
   message "Please source by running: 'source ~/.zshrc'"
 fi

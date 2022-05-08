@@ -14,4 +14,7 @@ install_software_common(){
   cd headers && cargo build --release
   cp target/release/headers ~/.cargo/bin/headers
   cd .. && rm -rf headers
+
+  message "Installing nvim plugins.."
+  nvim --headless +PlugInstall +qa
 }

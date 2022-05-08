@@ -30,6 +30,8 @@ install_software_mac() {
       gh
       fontconfig
       nvim
+      gpg
+      magic-wormhole
     )
   message "brew installing the following software: ${apps[*]}"
   for app in ${apps[*]}
@@ -61,7 +63,6 @@ install_software_mac() {
       visual-studio-code
       balenaetcher
       ledger-live
-      gpg
     )
     message "brew installing the following GUI apps (casks): ${casks[*]}"
     for cask in ${casks[*]}
