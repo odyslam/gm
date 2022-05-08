@@ -78,7 +78,10 @@ install_software_mac() {
    cp .tmux/.tmux.conf.local .
   # Oh my zsh
   message "Installing Oh my zsh.."
-  sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+  export REPLACE_RC='no'
+  # Make sure it's a fresh install
+  rm -rf ~/.oh-my-zsh
+  sudo sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
   fi
 
   fi
