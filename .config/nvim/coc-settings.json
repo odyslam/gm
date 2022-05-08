@@ -4,7 +4,7 @@
   "diagnostic.virtualTextLines": 1,
   "diagnostic.virtualTextLineSeparator": " \\ ",
   "diagonstic.virtualTextCurrentLineOnly": true,
-  "diagnostic.enableSign": false,
+  "diagnostic.enableSign": true,
   "diagnostic.enableMessage": "never",
   "diagnostic.messageDelay": 0,
   "diagnostic.maxWindowHeight": 16,
@@ -13,19 +13,18 @@
   "diagnostic.level": "warning",
   "diagnostic.checkCurrentLine": true,
   "suggest.fixInsertedWord": false,
-  "codeLens.enable": false,
+  "codeLens.enable": true,
   "codeLens.separator": " ",
   "coc.preferences.useQuickfixForLocations": true,
-  "coc.preferences.bracketEnterImprove": false,
+  "coc.preferences.bracketEnterImprove": true,
   "coc.preferences.snippets.enable": false,
   "coc.preferences.enableMessageDialog": true,
   "coc.preferences.formatOnSaveFiletypes": [
-    "rust"
+    "*"
   ],
   "coc.source.snippets.enable": false,
   "coc.source.buffer.enable": false,
   "coc.source.file.enable": false,
-
   "rust-analyzer.inlayHints.typeHintsSeparator": "",
   "rust-analyzer.inlayHints.chainingHintsSeparator": " ",
   "rust-analyzer.updates.prompt": false,
@@ -33,12 +32,13 @@
   "rust-analyzer.diagnostics.disabled": [
     "macro-error"
   ],
+  "rust-analyzer.rustfmt.extraArgs": [
+    "+nightly"
+  ],
   "rust-analyzer.lens.enable": true,
-
   "list.maxHeight": 10,
   "list.autoResize": false,
   "list.extendedSearchMode": false,
-
   "suggest.fixInsertedWord": false,
   "suggest.maxCompleteItemCount": 32
 }

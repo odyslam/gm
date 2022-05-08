@@ -29,9 +29,9 @@ sync_repo_to_local(){
     do
       cp "${HOME}/${dotfile}" "${dotfile}"
   done
+  rm -rf .vim && rm -rf .config/nvim
   cp -R ~/.vim/ .vim/ 2>/dev/null
   cp -R ~/.config/nvim .config/nvim/
-  cp -R ~/.config/coc .config/coc/
 }
 sync_local_to_repo(){
   announce "Copying the dotfiles from this repository over to the system.."
@@ -40,7 +40,7 @@ sync_local_to_repo(){
     do
       cp  "${dotfile}" "${HOME}/${dotfile}"
   done
+  rm -rf ~/.vim && rm -rf ~/.config/nvim
   cp -R .vim ~/.vim 2>/dev/null
   cp -r .config/nvim/ ~/.config/nvim
-  cp -r .config/coc/ ~/.config/coc
 }

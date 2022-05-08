@@ -56,6 +56,7 @@ set diffopt=filler,vertical,foldcolumn:0
 set statusline=%<%f\ (%{gitbranch#name()})\ %h%m%r%=%y\ \ %-14(%{&sw}:%{&sts}:%{&ts}%)%-14.(%l,%c%V%)\ %P
 set spelllang=en_us,en_gb
 set completeopt=menu
+set termguicolors
 let g:asyncrun_open = 6
 
 
@@ -295,11 +296,11 @@ endif
 
 " Syntax coloring
 syntax enable
-colo desert
 
 filetype plugin on
 set ofu=syntaxcomplete#Complete
 highlight Pmenu guibg=brown gui=bold
+highlight CocErrorHighlight ctermfg=Red  guifg=#ff0000
 
 " Profiling
 command! ProfileStart call s:ProfileStart()
@@ -392,6 +393,7 @@ function! s:QuickfixSigns()
     endtry
   endfor
 endfunction
+
 
 command! Write setlocal spell   | Goyo 100x98%
 command! Code  setlocal nospell | Goyo!
