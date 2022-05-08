@@ -51,7 +51,6 @@ install_software_mac() {
       brave-browser
       todoist
       rotki
-      cask
       private-internet-access
       stremio
       google-drive
