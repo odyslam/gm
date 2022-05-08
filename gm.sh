@@ -163,5 +163,6 @@ if [[ $DOTFILES == "true" ]]; then
   message "Please visit ~/.zsh_secrets and populate your API keys"
   echo -e "export BALENA_TOKEN=\nexport ETHERSCAN_API_KEY\nexport ETH_RPC_URL=" > ~/.zsh_secrets
   sync local
+  message "Please source by running: 'source ~/.zshrc'"
 fi
 
