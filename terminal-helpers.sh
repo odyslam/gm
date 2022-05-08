@@ -23,10 +23,12 @@ if command -v tput > /dev/null 2>&1; then
 fi
 
 warning(){
+  echo
   printf "%s\n\n" "${TPUT_BGRED}${TPUT_WHITE}${TPUT_BOLD} WARNING ${TPUT_RESET} ${*}"
 }
 
 message(){
+  echo
   printf "%s\n\n" "${TPUT_BGGREEN}${TPUT_WHITE}${TPUT_BOLD} INFO ${TPUT_RESET} ${*}"
 }
 
