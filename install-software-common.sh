@@ -2,7 +2,7 @@ install_software_common(){
   message "Installing Node via NVM.."
   curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
 
-  message "Installing Rust.. via Rustup"
+  message "Installing Rust via Rustup.."
   curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs |sh -s -- -y
 
   message "Installing Typescript (globally).."
@@ -20,4 +20,8 @@ install_software_common(){
 
   message "Installing nvim plugins.."
   nvim --headless +PlugInstall +qa
+
+  message "Installing radicle from source.."
+  cargo install --force --locked --git https://seed.alt-clients.radicle.xyz/radicle-cli.git radicle-cli
+
 }

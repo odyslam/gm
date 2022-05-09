@@ -3,7 +3,6 @@ install_software_mac() {
     # Add radicle tap
     message "Adding brew taps.."
     message "Although 'git' is already installed by xcode cli utils, it will be downloaded again and managed by brew"
-    brew tap radicle/cli https://seed.alt-clients.radicle.xyz/radicle-cli-homebrew.git
     apps=(
       tmux
       node
@@ -20,7 +19,6 @@ install_software_mac() {
       wget
       yarn
       libusb
-      radicle/cli/core
       cloudflare-wrangler
       wifi-password
       balena-cli
@@ -35,8 +33,9 @@ install_software_mac() {
       pinentry-mac
       virtualenv
       fd
+      cmake
     )
-  message "brew installing the following software: ${apps[*]}"
+  message "brew installing the following software: ${apps[*]}.."
   for app in ${apps[*]}
     do
       brew install "${app}"
@@ -75,7 +74,7 @@ install_software_mac() {
       ledger-live
       clickup
     )
-    message "brew installing the following GUI apps (casks): ${casks[*]}"
+    message "brew installing the following GUI apps (casks): ${casks[*]}.."
     for cask in ${casks[*]}
       do
         brew install --cask "${cask}"
@@ -113,7 +112,7 @@ install_software_mac() {
     spark
   )
 
-  message "The following apps will need to be installed manually via the app-store: ${appstore[*]}"
+  warning "The following apps will need to be installed manually via the app-store: ${appstore[*]}"
 }
 
 install_custom_zsh_plugins(){
@@ -125,7 +124,7 @@ install_custom_zsh_plugins(){
 }
 
 install_custom_fonts(){
-  message "Installing Powerline Fonts"
+  message "Installing Powerline Fonts.."
   git clone https://github.com/powerline/fonts.git --depth=1
   # install
   cd fonts
