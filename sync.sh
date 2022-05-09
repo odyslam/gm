@@ -46,5 +46,7 @@ sync_local_to_repo(){
   cp -r .config/nvim/ ~/.config/nvim
 
   message "Installing nvim plugins.."
+  warning "The error messages are normal, as the plugins haven't been installed yet"
   nvim --headless +PlugInstall +qa
+  message "Nvim plugins have been installed"
 }
