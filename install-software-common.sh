@@ -18,9 +18,6 @@ install_software_common(){
   cp target/release/headers ~/.cargo/bin/headers
   cd .. && rm -rf headers
 
-  message "Installing nvim plugins.."
-  nvim --headless +PlugInstall +qa
-
   message "Installing radicle from source.."
   cargo install --force --locked --git https://seed.alt-clients.radicle.xyz/radicle-cli.git radicle-cli
 

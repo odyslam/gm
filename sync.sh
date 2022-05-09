@@ -44,4 +44,7 @@ sync_local_to_repo(){
   rm -rf ~/.vim && rm -rf ~/.config/nvim
   cp -R .vim ~/.vim 2>/dev/null
   cp -r .config/nvim/ ~/.config/nvim
+
+  message "Installing nvim plugins.."
+  nvim --headless +PlugInstall +qa
 }
