@@ -65,7 +65,6 @@ install_software_mac() {
       brave-browser
       todoist
       rotki
-      private-internet-access
       stremio
       google-drive
       1password
@@ -73,6 +72,9 @@ install_software_mac() {
       balenaetcher
       ledger-live
       clickup
+      viber
+      private-internet-access
+
     )
     message "brew installing the following GUI apps (casks): ${casks[*]}.."
     for cask in ${casks[*]}
