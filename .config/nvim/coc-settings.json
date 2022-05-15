@@ -5,7 +5,7 @@
   "diagnostic.virtualTextLineSeparator": " \\ ",
   "diagonstic.virtualTextCurrentLineOnly": true,
   "diagnostic.enableSign": true,
-  "diagnostic.enableMessage": "never",
+  "diagnostic.enableMessage": "true",
   "diagnostic.messageDelay": 0,
   "diagnostic.maxWindowHeight": 16,
   "diagnostic.format": "✗ %message",
@@ -20,7 +20,12 @@
   "coc.preferences.snippets.enable": false,
   "coc.preferences.enableMessageDialog": true,
   "coc.preferences.formatOnSaveFiletypes": [
-    "*"
+    "rust",
+    "solidity",
+    "javascript",
+    "typescript",
+    "python",
+    "bash"
   ],
   "coc.source.snippets.enable": false,
   "coc.source.buffer.enable": false,

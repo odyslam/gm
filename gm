@@ -72,7 +72,7 @@ EOF
   message "${TPUT_BOLD}-t${TPUT_RESET}: Install development toolchain"
   message "${TPUT_BOLD}-s${TPUT_RESET}: Output instructions to setup the system (configuration, peripherals, etc.)"
   message "${TPUT_BOLD}-a${TPUT_RESET}: Install all the above"
-  message "${TPUT_BOLD}-u${TPUT_RESET}: Update the dotfiles in this repository to the system's"
+  message "${TPUT_BOLD}-u${TPUT_RESET}: Update the dotfiles of this repo, with the ones installed in '${HOME}'"
 }
 
 # Installation types
