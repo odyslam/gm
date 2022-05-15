@@ -232,12 +232,14 @@ noremap <C-l> $
 noremap j gj
 noremap k gk
 
-" Like '*' but stays on the original word
 
- nnoremap <C-n>           *N
- nnoremap <C-p>           #N
- nnoremap c*              *Ncgn
- nnoremap <Leader>h       :nohl<CR>
+" Add headers
+
+noremap <Leader>h .! headers
+
+nnoremap <C-n>           *N
+nnoremap <C-p>           #N
+nnoremap c*              *Ncgn
 
 nnoremap <Leader>n      :cnext<CR>
 nnoremap <Leader>p      :cprev<CR>
