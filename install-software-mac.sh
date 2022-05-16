@@ -35,7 +35,7 @@ install_software_mac() {
       fd
       cmake
     )
-  message "brew installing the following software: ${apps[*]}.."
+  message "Installing the following binaries, via brew: ${apps[*]}.."
   for app in ${apps[*]}
     do
       brew install "${app}"
@@ -76,11 +76,25 @@ install_software_mac() {
       private-internet-access
 
     )
-    message "brew installing the following GUI apps (casks): ${casks[*]}.."
+    message "Installing the following GUI apps, via brew (casks): ${casks[*]}.."
     for cask in ${casks[*]}
       do
         brew install --cask "${cask}"
     done
+
+    message "Installing Urbit v1.8.."
+    curl "https://github.com/urbit/urbit/releases/download/urbit-v1.8/darwin.tgz"
+    curl tar -xvzf darwin.tgz
+    cd "urbit-v1.8-x86_64-darwin"
+    mkdir ~/.urbit && mkdir ~/.urbit/bin && mkdir ~/.urbit/piers
+    sudo mv urbit ~/.urbit/bin/urbit
+    mv urbit-worker ~/.urbit/bin/urbit-worker
+    mv urbit-king ~/.urbit/bin/urbit-king
+    cd .. && rm -rf "urbit-v1.8-x86_64-darwin"
+    message "Urbit Installed at ~/.urbit/"
+    message "Piers can be placed at ~/.urbit/piers"
+    message "Pier directory is available under the 'URBIT_PIERS' env. variable"
+
   fi
   if [[ $DEV_TOOLCHAIN == "true" ]]; then
     message "Installing coreutils.."
