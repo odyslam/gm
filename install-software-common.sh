@@ -18,7 +18,7 @@ install_software_common(){
   cp target/release/headers ~/.cargo/bin/headers
   cd .. && rm -rf headers
 
-  message "Installing radicle from source.."
+  message "Installing cargo-based binaries.."
   cargo install --force --locked --git https://seed.alt-clients.radicle.xyz/radicle-cli.git radicle-cli
-
+  cargo install when-cli
 }
