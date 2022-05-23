@@ -28,18 +28,21 @@ sync_repo_to_local(){
   message "It will copy the following dotfiles: ${dotfiles[*]}"
   for dotfile in ${dotfiles[*]}
     do
-      cp "${HOME}/${dotfile}" "${dotfile}"
+      cp -rf "${HOME}/${dotfile}" "${dotfile}"
   done
   rm -rf .vim && rm -rf .config/nvim
   cp -R ~/.vim/ .vim/ 2>/dev/null
   cp -R ~/.config/nvim .config/nvim/
+
+  message "Updating brew-apps.txt via brew leaves.."
+  brew leaves > brew-apps.txt
 }
 sync_local_to_repo(){
   announce "Copying the dotfiles from this repository over to the system.."
   message "It will copy the following dotfiles: ${dotfiles[*]}"
   for dotfile in ${dotfiles[*]}
     do
-      cp  "${dotfile}" "${HOME}/${dotfile}"
+      cp -rf "${dotfile}" "${HOME}/${dotfile}"
   done
   rm -rf ~/.vim && rm -rf ~/.config/nvim
   cp -R .vim ~/.vim 2>/dev/null
