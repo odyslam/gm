@@ -3,39 +3,8 @@ install_software_mac() {
     # Add radicle tap
     message "Adding brew taps.."
     message "Although 'git' is already installed by xcode cli utils, it will be downloaded again and managed by brew"
-    apps=(
-      tmux
-      node
-      ag
-      bat
-      exa
-      jq
-      git
-      git-delta
-      git-extras
-      htop
-      python3
-      tree
-      wget
-      yarn
-      libusb
-      cloudflare-wrangler
-      wifi-password
-      balena-cli
-      shellcheck
-      hadolint
-      asciinema
-      gh
-      fontconfig
-      nvim
-      gpg
-      magic-wormhole
-      pinentry-mac
-      virtualenv
-      fd
-      cmake
-    )
-  message "brew installing the following software: ${apps[*]}.."
+    apps="($(cat brew-apps.txt))"
+  message "Installing the following binaries, via brew: ${apps[*]}.."
   for app in ${apps[*]}
     do
       brew install "${app}"
@@ -76,11 +45,27 @@ install_software_mac() {
       private-internet-access
 
     )
-    message "brew installing the following GUI apps (casks): ${casks[*]}.."
+    # casks="($(cat brew-casks.txt))"
+    message "Installing the following GUI apps, via brew (casks): ${casks[*]}.."
     for cask in ${casks[*]}
       do
         brew install --cask "${cask}"
     done
+
+    message "Installing Urbit v1.8.."
+    curl "https://github.com/urbit/urbit/releases/download/urbit-v1.8/darwin.tgz"
+    curl tar -xvzf darwin.tgz
+    cd "urbit-v1.8-x86_64-darwin"
+    mkdir ~/.urbit && mkdir ~/.urbit/bin && mkdir ~/.urbit/piers
+    sudo mv urbit ~/.urbit/bin/urbit
+    mv urbit-worker ~/.urbit/bin/urbit-worker
+    mv urbit-king ~/.urbit/bin/urbit-king
+    cd .. && rm -rf "urbit-v1.8-x86_64-darwin"
+    message "Urbit Installed at ~/.urbit/"
+    message "Piers can be placed at ~/.urbit/piers"
+    message "Pier directory is available under the 'URBIT_PIERS' env. variable"
+    warning "You might need Rosetta to run Urbit"
+
   fi
   if [[ $DEV_TOOLCHAIN == "true" ]]; then
     message "Installing coreutils.."

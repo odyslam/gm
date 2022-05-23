@@ -5,3 +5,8 @@ export VISUAL=nvim
 export NVM_DIR="$HOME/.nvm"
 [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"
 source ~/.zsh_secrets
+source "$HOME/.cargo/env"
+
+if [[ $(which git) != "/opt/homebrew/bin/git" ]]; then
+  warning "The system is not configured to use brew's Git. Current Git path: $(which git)"
+fi
