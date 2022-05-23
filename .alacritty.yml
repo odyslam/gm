@@ -13,7 +13,6 @@ font:
         style: Bold Italic
     size: 12
     use_thin_strokes: true
-
 # Cyber Punk Neon
 # Source: https://github.com/Roboron3042/Cyberpunk-Neon
 colors:

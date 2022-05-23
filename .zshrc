@@ -61,6 +61,8 @@ alias gad='gatsby develop'
 alias gac='gatsby clean'
 alias cat='bat'
 alias ls='exa'
+# Utils
+alias dnsflush="sudo dscacheutil -flushcache && sudo killall -HUP mDNSResponder"
 
 function tree-git-ignore {
   local ignored=$(git ls-files -ci --others --directory --exclude-standard)
@@ -128,6 +130,7 @@ setopt INTERACTIVECOMMENTS
 # Oh my zsh
 
 ZSH_THEME="agnoster"
+SOLARIZED_THEME=light
 ENABLE_CORRECTION="true"
 COMPLETION_WAITING_DOTS="true"
 ZSH_COMMAND_TIME_MIN_SECONDS=1

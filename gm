@@ -122,16 +122,14 @@ if [[ ! $REPLY =~ ^[Yy]$ ]]
 then
     exit 1
 fi
-# Print an empty line
+# Print 2 empty lines
 echo
 echo
-# Install apps and toolchain based on the OS type and then install the common
-# If macOS, it uses brew as the package manager
-# If Linux, it depends:
-# - Debian/Ubuntu:
-#   - They are known for having a very long release process and a lot of the packages
-#     on the main package repository are stale. I will propably use the package manager
-#     with the repositories that are managed by the project/software themselves.
+
+    /*//////////////////////////////////////////////////////////////
+                      OS-DEPENDENT
+    //////////////////////////////////////////////////////////////*/
+
 if [[ $(uname) == 'Darwin'* ]]; then
   message "MacOS detected"
   # Make sure the script can find brew
@@ -152,11 +150,13 @@ elif [[ $(uname) == 'Linux' ]]; then
     system_setup_linux
   fi
 fi
-
 if [[ $DEV_TOOLCHAIN == "true" ]]; then
   install_software_eth
   install_software_common
 fi
+    /*//////////////////////////////////////////////////////////////
+                               OS-AGNOSTIC
+    //////////////////////////////////////////////////////////////*/
 
 if [[ $DOTFILES == "true" ]]; then
   message "Installing dotfiles"
@@ -164,5 +164,10 @@ if [[ $DOTFILES == "true" ]]; then
   echo -e "export BALENA_TOKEN=\nexport ETHERSCAN_API_KEY=\nexport ETH_RPC_URL=" > ~/.zsh_secrets
   sync local
   message "Please source by running: 'source ~/.zshrc'"
+  message "Emptying shell's hash"
+  hash -r
+  if [[ $(which git) != "/opt/homebrew/bin/git" ]]; then
+    warning "The system is not configured to use brew's Git. Current Git path is ${TPUT_BOLD}$(which git)${TPUT_RESET}"
+  fi
 fi
 

@@ -327,8 +327,10 @@ endfunction
 if has("nvim")
   call plug#begin()
   Plug 'ekalinin/Dockerfile.vim'
-  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-  Plug 'junegunn/fzf.vim'
+"  Not work in M1
+"  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+"  Plug 'junegunn/fzf.vim'
+  Plug  'mileszs/ack.vim'
   Plug  'preservim/nerdtree'
   Plug 'tpope/vim-commentary'
   Plug 'evanleck/vim-svelte', { 'for': ['svelte'], 'branch': 'main' }
@@ -354,6 +356,7 @@ if has("nvim")
   Plug 'vim-ruby/vim-ruby'
   Plug 'skywind3000/asynctasks.vim'
   Plug 'skywind3000/asyncrun.vim'
+  Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
   call plug#end()
 endif
 
