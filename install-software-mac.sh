@@ -43,6 +43,7 @@ install_software_mac() {
       clickup
       viber
       private-internet-access
+      postman
 
     )
     # casks="($(cat brew-casks.txt))"
