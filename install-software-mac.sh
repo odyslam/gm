@@ -53,8 +53,10 @@ install_software_mac() {
         brew install --cask "${cask}"
     done
 
-    message "Installing Urbit v1.8.."
-    curl "https://github.com/urbit/urbit/releases/download/urbit-v1.8/darwin.tgz"
+
+    # Install Urbit
+    message "Installing Urbit v1.9.."
+    curl "https://github.com/urbit/urbit/releases/download/urbit-v1.9/darwin.tgz"
     curl tar -xvzf darwin.tgz
     cd "urbit-v1.8-x86_64-darwin"
     mkdir ~/.urbit && mkdir ~/.urbit/bin && mkdir ~/.urbit/piers
