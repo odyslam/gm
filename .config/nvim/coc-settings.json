@@ -3,11 +3,9 @@
   "diagnostic.virtualTextPrefix": " ✗ ",
   "diagnostic.virtualTextLines": 1,
   "diagnostic.virtualTextLineSeparator": " \\ ",
-  "diagonstic.virtualTextCurrentLineOnly": true,
   "diagnostic.enableSign": true,
   "diagnostic.enableMessage": "true",
   "diagnostic.messageDelay": 0,
-  "diagnostic.maxWindowHeight": 16,
   "diagnostic.format": "✗ %message",
   "diagnostic.hintSign": "",
   "diagnostic.level": "warning",
@@ -17,17 +15,10 @@
   "codeLens.separator": " ",
   "coc.preferences.useQuickfixForLocations": true,
   "coc.preferences.bracketEnterImprove": true,
-  "coc.preferences.snippets.enable": false,
   "coc.preferences.enableMessageDialog": true,
   "coc.preferences.formatOnSaveFiletypes": [
-    "rust",
-    "solidity",
-    "javascript",
-    "typescript",
-    "python",
-    "bash"
+    "*"
   ],
-  "coc.source.snippets.enable": false,
   "coc.source.buffer.enable": false,
   "coc.source.file.enable": false,
   "rust-analyzer.inlayHints.typeHintsSeparator": "",
@@ -41,9 +32,6 @@
     "+nightly"
   ],
   "rust-analyzer.lens.enable": true,
-  "list.maxHeight": 10,
-  "list.autoResize": false,
   "list.extendedSearchMode": false,
-  "suggest.fixInsertedWord": false,
   "suggest.maxCompleteItemCount": 32
 }

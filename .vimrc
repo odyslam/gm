@@ -174,31 +174,6 @@ let g:vim_markdown_frontmatter = 1
 " We use a POSIX shell
 let g:is_posix = 1
 
-" Haskell
-let g:haskellmode_completion_ghc = 0
-let g:haskell_enable_quantification = 1
-au FileType haskell setlocal omnifunc=necoghc#omnifunc
-au FileType haskell setlocal makeprg=stack\ build\ --fast
-au FileType haskell setlocal errorformat=
-                \%-G,
-                \%-Z\ %#,
-                \%W%f:%l:%c:\ Warning:\ %m,
-                \%E%f:%l:%c:\ %m,
-                \%E%>%f:%l:%c:,
-                \%+C\ \ %#%m,
-                \%W%>%f:%l:%c:,
-                \%+C\ \ %#%tarning:\ %m,
-
-if executable('haskell-tags')
-  au BufWritePost *.hs  silent !haskell-tags % '.tags'
-  au BufWritchPost *.hsc silent !haskell-tags % '.tags'
-endif
-
-if executable('ctags')
-  au BufWritePost *.c,*.cc,*.cpp  silent !ctags -f .tags -R .
-  au BufWritePost *.h             silent !ctags -f .tags -R .
-endif
-
 " File-type
 filetype on
 filetype plugin on
@@ -286,6 +261,9 @@ map <Leader><Space> @:
 " Commenting
 nmap <C-_>           <Plug>CommentaryLine
 xmap <C-_>           <Plug>Commentary
+
+xmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
 
 if has("nvim")
   tnoremap <Esc> <C-\><C-n>

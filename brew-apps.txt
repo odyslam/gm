@@ -16,12 +16,12 @@ htop
 jq
 magic-wormhole
 neovim
-node
 pinentry-mac
 pipenv
 python@3.9
 shellcheck
 the_silver_searcher
+thefuck
 tmux
 tree
 wget

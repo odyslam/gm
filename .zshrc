@@ -144,3 +144,9 @@ quote_api_reply=$(curl -sS api.quotable.io/random)
 author=$(echo $quote_api_reply | jq .author)
 quote=$(echo $quote_api_reply | jq .content)
 echo -e "$quote\n-$author"
+
+eval $(thefuck --alias)
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
