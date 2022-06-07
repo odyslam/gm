@@ -19,6 +19,7 @@ neovim
 pinentry-mac
 pipenv
 python@3.9
+rbenv
 shellcheck
 the_silver_searcher
 thefuck
