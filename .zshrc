@@ -61,6 +61,8 @@ alias gad='gatsby develop'
 alias gac='gatsby clean'
 alias cat='bat'
 alias ls='exa'
+alias flint='cargo check --all && cargo test --all --all-features && cargo +nightly fmt -- --check && cargo +nightly clippy --all --all-features -- -D warnings'
+
 # Utils
 alias dnsflush="sudo dscacheutil -flushcache && sudo killall -HUP mDNSResponder"
 
@@ -154,3 +156,4 @@ export NVM_DIR="$HOME/.nvm"
 # Setup rbenv, thefuck
 eval "$(rbenv init - zsh)"
 eval $(thefuck --alias)
+export PATH="/opt/homebrew/opt/openssl@3/bin:$PATH"
