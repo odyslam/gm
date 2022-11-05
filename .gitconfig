@@ -5,27 +5,6 @@
 [github]
   user = OdysLam
 
-[color]
-  branch = auto
-  diff = auto
-  status = auto
-
-[color "branch"]
-  current = yellow reverse
-  local = yellow
-  remote = green
-
-[color "diff"]
-  meta = yellow
-  frag = magenta
-  old = red
-  new = green
-
-[color "status"]
-  added = yellow
-  changed = green
-  untracked = cyan
-
 [core]
   editor = nvim
 
@@ -66,9 +45,14 @@
 [delta]
     navigate = true  # use n and N to move between diff sections
     light = false    # set to true if you're in a terminal w/ a light background color (e.g. the default macOS terminal)
+  line-numbers = true
+      side-by-side = true
+
 
 [merge]
     conflictstyle = diff3
 
 [diff]
     colorMoved = default
+[push]
+	default = current

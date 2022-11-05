@@ -21,4 +21,5 @@ install_software_common(){
   message "Installing cargo-based binaries.."
   cargo install --force --locked --git https://seed.alt-clients.radicle.xyz/radicle-cli.git radicle-cli
   cargo install when-cli
+  cargo install mdbook
 }

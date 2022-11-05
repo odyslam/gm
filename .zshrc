@@ -6,7 +6,7 @@ if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
 fi
 
 export GPG_TTY=$(tty)
-
+export PATH="/opt/homebrew/opt/openssl@3/bin:/bin:$PATH"
 #
 # Includes
 #
@@ -46,7 +46,6 @@ alias y="yarn"
 # Bash
 alias v="nvim"
 alias mk='make'
-alias mv='/bin/mv -i'
 alias ..='cd ..'
 alias df='df -h'
 alias e=$EDITOR
@@ -61,6 +60,9 @@ alias gad='gatsby develop'
 alias gac='gatsby clean'
 alias cat='bat'
 alias ls='exa'
+alias flint='cargo +nightly fmt -- --check && cargo +nightly clippy --all --all-features -- -D warnings'
+alias ftest='cargo check --all && cargo test --all --all-features'
+
 # Utils
 alias dnsflush="sudo dscacheutil -flushcache && sudo killall -HUP mDNSResponder"
 
@@ -144,3 +146,13 @@ quote_api_reply=$(curl -sS api.quotable.io/random)
 author=$(echo $quote_api_reply | jq .author)
 quote=$(echo $quote_api_reply | jq .content)
 echo -e "$quote\n-$author"
+
+
+# setup NVM
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# Setup rbenv, thefuck
+eval "$(rbenv init - zsh)"
+eval $(thefuck --alias)

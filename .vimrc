@@ -12,12 +12,15 @@ set smarttab
 
 " Misc
 "
-set number
+" Hubrid line numbers: https://jeffkreeftmeijer.com/vim-number/
+set number relativenumber
+set nu rnu
 set ruler
 set showmatch
 set wildmenu
 set wildmode=full
-set nowrap
+set wrap
+set linebreak
 set hidden
 set modeline
 set hlsearch
@@ -27,9 +30,7 @@ set ignorecase                      " Ignore case in search
 set smartcase                       " Override ignorecase if uppercase is used in search string
 set report=0                        " Report all changes
 set laststatus=2                    " Always show status-line
-set nocursorline                    " Highlight current line
 set scrolloff=4
-set nofoldenable
 set timeoutlen=200                  " Set timeout between key sequences
 set background=dark
 set mouse=a                         " Enable mouse in all modes
@@ -40,7 +41,6 @@ set nobackup
 set nowritebackup
 set noswapfile
 set nostartofline
-"set noshowmode                      " Don't show stuff like `-- INSERT --`
 set foldlevel=99                    " Open all folds by default
 set cmdheight=1
 set matchtime=2                     " Shorter brace match time
@@ -57,6 +57,7 @@ set statusline=%<%f\ (%{gitbranch#name()})\ %h%m%r%=%y\ \ %-14(%{&sw}:%{&sts}:%{
 set spelllang=en_us,en_gb
 set completeopt=menu
 set termguicolors
+set foldmethod=syntax
 let g:asyncrun_open = 6
 
 
@@ -95,11 +96,6 @@ let g:vim_markdown_no_default_key_mappings = 1
 " Latex
 let g:vimtex_quickfix_mode = 0
 
-" Svelte
-let g:svelte_preprocessors = ['typescript', 'ts']
-let g:svelte_preprocessor_tags = [
-  \ { 'name': 'ts', 'tag': 'script', 'as': 'typescript' }
-  \ ]
 
 " inccommand
 if has("nvim")
@@ -174,31 +170,6 @@ let g:vim_markdown_frontmatter = 1
 " We use a POSIX shell
 let g:is_posix = 1
 
-" Haskell
-let g:haskellmode_completion_ghc = 0
-let g:haskell_enable_quantification = 1
-au FileType haskell setlocal omnifunc=necoghc#omnifunc
-au FileType haskell setlocal makeprg=stack\ build\ --fast
-au FileType haskell setlocal errorformat=
-                \%-G,
-                \%-Z\ %#,
-                \%W%f:%l:%c:\ Warning:\ %m,
-                \%E%f:%l:%c:\ %m,
-                \%E%>%f:%l:%c:,
-                \%+C\ \ %#%m,
-                \%W%>%f:%l:%c:,
-                \%+C\ \ %#%tarning:\ %m,
-
-if executable('haskell-tags')
-  au BufWritePost *.hs  silent !haskell-tags % '.tags'
-  au BufWritchPost *.hsc silent !haskell-tags % '.tags'
-endif
-
-if executable('ctags')
-  au BufWritePost *.c,*.cc,*.cpp  silent !ctags -f .tags -R .
-  au BufWritePost *.h             silent !ctags -f .tags -R .
-endif
-
 " File-type
 filetype on
 filetype plugin on
@@ -269,10 +240,6 @@ cnoreabbrev Q q
 nnoremap <C-t> :NERDTreeToggle<CR>
 
 
-" File navigation/search
-nnoremap <Leader>o      :FuzzyOpen<CR>
-nnoremap <Leader>f      :FuzzyGrep<CR>
-
 " Navigate relative to the current file
 cmap     %/         %:p:h/
 
@@ -286,6 +253,9 @@ map <Leader><Space> @:
 " Commenting
 nmap <C-_>           <Plug>CommentaryLine
 xmap <C-_>           <Plug>Commentary
+
+xmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
 
 if has("nvim")
   tnoremap <Esc> <C-\><C-n>
@@ -327,9 +297,8 @@ endfunction
 if has("nvim")
   call plug#begin()
   Plug 'ekalinin/Dockerfile.vim'
-"  Not work in M1
-"  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-"  Plug 'junegunn/fzf.vim'
+  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+  Plug 'junegunn/fzf.vim'
   Plug  'mileszs/ack.vim'
   Plug  'preservim/nerdtree'
   Plug 'tpope/vim-commentary'
@@ -357,6 +326,7 @@ if has("nvim")
   Plug 'skywind3000/asynctasks.vim'
   Plug 'skywind3000/asyncrun.vim'
   Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
+  Plug 'github/copilot.vim'
   call plug#end()
 endif
 
