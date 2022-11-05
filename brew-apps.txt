@@ -36,3 +36,4 @@ tree
 wget
 wifi-password
 yarn
+z3

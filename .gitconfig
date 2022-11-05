@@ -54,3 +54,5 @@
 
 [diff]
     colorMoved = default
+[push]
+	default = current

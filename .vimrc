@@ -12,13 +12,16 @@ set smarttab
 
 " Misc
 "
-set number
+" Hubrid line numbers: https://jeffkreeftmeijer.com/vim-number/
+set number relativenumber
+set nu rnu
 set ruler
 set showmatch
 set wildmenu
 set wildmode=full
 set wrap
 set linebreak
+set hidden
 set modeline
 set hlsearch
 set incsearch
@@ -323,6 +326,7 @@ if has("nvim")
   Plug 'skywind3000/asynctasks.vim'
   Plug 'skywind3000/asyncrun.vim'
   Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
+  Plug 'github/copilot.vim'
   call plug#end()
 endif
 

@@ -4,7 +4,7 @@
   "diagnostic.virtualTextLines": 1,
   "diagnostic.virtualTextLineSeparator": " \\ ",
   "diagnostic.enableSign": true,
-  "diagnostic.enableMessage": "true",
+  "diagnostic.enableMessage": "always",
   "diagnostic.messageDelay": 0,
   "diagnostic.format": "✗ %message",
   "diagnostic.hintSign": "",
@@ -16,21 +16,13 @@
   "coc.preferences.useQuickfixForLocations": true,
   "coc.preferences.bracketEnterImprove": true,
   "coc.preferences.enableMessageDialog": true,
-  "coc.preferences.formatOnSaveFiletypes": [
-    "*"
-  ],
+  "coc.preferences.formatOnSaveFiletypes": ["*"],
   "coc.source.buffer.enable": false,
   "coc.source.file.enable": false,
-  "rust-analyzer.inlayHints.typeHintsSeparator": "",
-  "rust-analyzer.inlayHints.chainingHintsSeparator": " ",
   "rust-analyzer.updates.prompt": false,
-  "rust-analyzer.diagnostics.enableExperimental": true,
-  "rust-analyzer.diagnostics.disabled": [
-    "macro-error"
-  ],
-  "rust-analyzer.rustfmt.extraArgs": [
-    "+nightly"
-  ],
+  "rust-analyzer.diagnostics.disabled": ["macro-error"],
+  "rust-analyzer.rustfmt.extraArgs": ["+nightly"],
+  "rust-analyzer.updates.channel": "nightly",
   "rust-analyzer.lens.enable": true,
   "list.extendedSearchMode": false,
   "suggest.maxCompleteItemCount": 32
