@@ -56,8 +56,9 @@ set diffopt=filler,vertical,foldcolumn:0
 set statusline=%<%f\ (%{gitbranch#name()})\ %h%m%r%=%y\ \ %-14(%{&sw}:%{&sts}:%{&ts}%)%-14.(%l,%c%V%)\ %P
 set spelllang=en_us,en_gb
 set completeopt=menu
-set termguicolors
 set foldmethod=syntax
+set termguicolors
+
 let g:asyncrun_open = 6
 
 
@@ -297,35 +298,23 @@ endfunction
 if has("nvim")
   call plug#begin()
   Plug 'ekalinin/Dockerfile.vim'
-  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-  Plug 'junegunn/fzf.vim'
-  Plug  'mileszs/ack.vim'
   Plug  'preservim/nerdtree'
   Plug 'tpope/vim-commentary'
-  Plug 'evanleck/vim-svelte', { 'for': ['svelte'], 'branch': 'main' }
-  Plug 'pangloss/vim-javascript', { 'for': ['javascript'] }
-  Plug 'bronson/vim-visual-star-search'
   Plug 'gabrielelana/vim-markdown'
-  Plug 'tikhomirov/vim-glsl'
   Plug 'junegunn/goyo.vim'
-  Plug 'exu/pgsql.vim'
-  Plug 'hail2u/vim-css3-syntax'
   Plug 'lervag/vimtex', { 'for': ['tex'] }
   Plug 'itchyny/vim-gitbranch'
-  Plug 'cespare/vim-toml'
-  Plug 'rust-lang/rust.vim'
   Plug 'neoclide/coc.nvim', { 'branch': 'release'}
-  Plug 'tomlion/vim-solidity'
   Plug 'neovim/nvim-lspconfig'
   Plug 'nvim-lua/plenary.nvim'
   Plug 'lewis6991/gitsigns.nvim'
   Plug 'leafgarland/typescript-vim', { 'for': ['typescript'] }
-  Plug 'jparise/vim-graphql'
   Plug 'tpope/vim-fugitive'
-  Plug 'vim-ruby/vim-ruby'
-  Plug 'skywind3000/asynctasks.vim'
-  Plug 'skywind3000/asyncrun.vim'
+  Plug 'tpope/vim-rhubarb'
   Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
+  Plug 'nvim-telescope/telescope.nvim'
+  Plug 'fannheyward/telescope-coc.nvim'
+  Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
   Plug 'github/copilot.vim'
   call plug#end()
 endif
@@ -338,6 +327,28 @@ require('gitsigns').setup {
 }
 EOF
 
+lua << EOF
+require("telescope").setup({
+  extensions = {
+    coc = {
+        theme = 'ivy',
+        prefer_locations = true, -- always use Telescope locations to preview definitions/declarations/implementations etc
+    }
+  },
+})
+require('telescope').load_extension('coc')
+EOF
+" Find files using Telescope command-line sugar.
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+
+" Using Lua functions
+nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
+nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
+nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
+nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
 "
 " Quickfix Signs
 "
@@ -403,3 +414,8 @@ endfunction
   autocmd User CocNvimInit call SetupCoc()
 autocmd VimEnter * NERDTree | wincmd p
 
+
+hi Pmenu guibg=#fffff gui=NONE
+hi PmenuSel guibg=#b7c7b7 gui=NONE
+hi PmenuSbar guibg=#bcbcbc
+hi PmenuThumb guibg=#585858

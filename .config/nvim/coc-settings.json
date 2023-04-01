@@ -25,5 +25,8 @@
   "rust-analyzer.updates.channel": "nightly",
   "rust-analyzer.lens.enable": true,
   "list.extendedSearchMode": false,
-  "suggest.maxCompleteItemCount": 32
+  "suggest.maxCompleteItemCount": 32,
+  "explorer.icon.enableNerdfont": true,
+  "@ignored/coc-solidity.telemetry": true,
+  "prettier.disableLanguages": ["solidity"]
 }

@@ -11,20 +11,22 @@ font:
   bold_italic:
     family: Meslo LG S for Powerline
     style: Bold Italic
-  size: 12
-  use_thin_strokes: true
-# Cyber Punk Neon
-# Source: https://github.com/Roboron3042/Cyberpunk-Neon
+  size: 14
+draw_bold_text_with_bright_colors: true
+
+# Cyberpunk-Neon colours
 colors:
-  # Default colors
+  # Default colours
   primary:
     background: "0x000b1e"
     foreground: "0x0abdc6"
 
-  # Colors the cursor will use if `custom_cursor_colors` is true
-  cursor:
-    text: "0x000b1e"
-    cursor: "0x0abdc6"
+  # Colors that should be used to draw the terminal cursor. If these are unset,
+  # the cursor colour will be the inverse of the cell colour.
+  # cursor:
+  #   text: '0x2e2e2d'
+  #   # text: '0x000000'
+  #   cursor: '0xffffff'
 
   # Normal colors
   normal:
@@ -44,6 +46,17 @@ colors:
     green: "0xd300c4"
     yellow: "0xf57800"
     blue: "0x00ff00"
+    magenta: "0x711c91"
+    cyan: "0x0abdc6"
+    white: "0xd7d7d5"
+
+  # dim colors
+  dim:
+    black: "0x1c61c2"
+    red: "0xff0000"
+    green: "0xd300c4"
+    yellow: "0xf57800"
+    blue: "0x123e7c"
     magenta: "0x711c91"
     cyan: "0x0abdc6"
     white: "0xd7d7d5"

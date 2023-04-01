@@ -156,3 +156,10 @@ export NVM_DIR="$HOME/.nvm"
 # Setup rbenv, thefuck
 eval "$(rbenv init - zsh)"
 eval $(thefuck --alias)
+
+# bun completions
+[ -s "/Users/odysseas/.bun/_bun" ] && source "/Users/odysseas/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
