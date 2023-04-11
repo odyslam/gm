@@ -11,3 +11,4 @@ source "$HOME/.cargo/env"
 if [[ $(which git) != "/opt/homebrew/bin/git" ]]; then
   warning "The system is not configured to use brew's Git. Current Git path: $(which git)"
 fi
+. "$HOME/.cargo/env"

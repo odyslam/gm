@@ -136,8 +136,16 @@ SOLARIZED_THEME=light
 ENABLE_CORRECTION="true"
 COMPLETION_WAITING_DOTS="true"
 ZSH_COMMAND_TIME_MIN_SECONDS=1
-plugins=(git docker copybuffer textmate tmux sudo zsh-syntax-highlighting zsh-autosuggestions command-time zsh-vi-mode)
-ZSH_TMUX_AUTOSTART="true"
+plugins=(git docker copybuffer textmate sudo zsh-syntax-highlighting zsh-autosuggestions command-time zsh-vi-mode)
+# ZSH_TMUX_AUTOSTART="true"
+# Setup Zellij
+if [[ -z "$ZELLIJ" ]]; then
+        zellij attach -c
+    fi
+
+if [[ "$ZELLIJ_AUTO_EXIT" == "true" ]]; then
+    exit
+fi
 
 source ~/.oh-my-zsh/oh-my-zsh.sh
 
@@ -156,3 +164,10 @@ export NVM_DIR="$HOME/.nvm"
 # Setup rbenv, thefuck
 eval "$(rbenv init - zsh)"
 eval $(thefuck --alias)
+
+# bun completions
+[ -s "/Users/odysseas/.bun/_bun" ] && source "/Users/odysseas/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
