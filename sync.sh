@@ -28,9 +28,9 @@ sync_repo_to_local(){
     do
       cp -rf "${HOME}/${dotfile}" "${dotfile}"
   done
-  rm -rf .vim && rm -rf .config/nvim
-  cp -R ~/.config/nvim .config/nvim/
-  cp ~/.local/share/nvim .local/share/nvim
+  rm -rf .config/nvim/lua/user
+  mkdir -p .config/nvim/lua/user
+  cp -R ~/.config/nvim/lua/user .config/nvim/lua/user
 
 
   message "Updating brew-apps.txt via brew leaves.."
@@ -43,9 +43,8 @@ sync_local_to_repo(){
     do
       cp -rf "${dotfile}" "${HOME}/${dotfile}"
   done
-  rm -rf ~/.vim && rm -rf ~/.config/nvim
-  cp -r .config/nvim/ ~/.config/nvim
-  cp .local/share/vim ~/.local/share/nvim
+  rm rm -rf ~/.config/nvim/lua/user
+  cp -r .config/nvim/lua/user ~/.config/nvim/lua/user
 
   message "Installing nvim plugins.."
   warning "The error messages are normal, as the plugins haven't been installed yet"
