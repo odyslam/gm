@@ -5,7 +5,7 @@ install_software_mac() {
     message "Although 'git' is already installed by xcode cli utils, it will be downloaded again and managed by brew"
     apps="($(cat brew-apps.txt))"
   message "Installing the following binaries, via brew: ${apps[*]}.."
-  for app in ${apps[*]}
+  for app in "${apps[@]}"
     do
       brew install "${app}"
   done
@@ -19,36 +19,35 @@ install_software_mac() {
   gpgconf --kill gpg-agent
 
   if [[ $GUI == "true" ]]; then
-    casks=(
-      alacritty
-      flux
-      raycast
-      docker
-      slack
-      spotify
-      discord
-      cron
-      signal
-      telegram
-      whatsapp
-      brave-browser
-      todoist
-      rotki
-      stremio
-      google-drive
-      1password
-      visual-studio-code
-      balenaetcher
-      ledger-live
-      clickup
-      viber
-      private-internet-access
-      postman
-
-    )
+  casks=(
+    # Terminals
+    alacritty
+    # Messaging
+    discord
+    signal
+    telegram
+    whatsapp
+    # Productivity
+    notion
+    todoist
+    1password
+    # Media and entertainment
+    spotify
+    stremio
+    # Other
+    docker
+    slack
+    visual-studio-code
+    postman
+    google-drive
+    ledger-live
+    viber
+    private-internet-access
+    cron
+  )
     # casks="($(cat brew-casks.txt))"
     message "Installing the following GUI apps, via brew (casks): ${casks[*]}.."
-    for cask in ${casks[*]}
+    for cask in "${casks[@]}"
       do
         brew install --cask "${cask}"
     done
@@ -57,9 +56,7 @@ install_software_mac() {
     # Install Urbit
     message "Installing Urbit v1.9.."
     curl "https://github.com/urbit/urbit/releases/download/urbit-v1.9/darwin.tgz"
-    curl tar -xvzf darwin.tgz
-    cd "urbit-v1.8-x86_64-darwin"
-    mkdir ~/.urbit && mkdir ~/.urbit/bin && mkdir ~/.urbit/piers
+    curl -L https://urbit.org/install/macos-x86_64/latest | tar xzk -s '/.*/urbit/'
     sudo mv urbit ~/.urbit/bin/urbit
     mv urbit-worker ~/.urbit/bin/urbit-worker
     mv urbit-king ~/.urbit/bin/urbit-king
@@ -72,16 +69,11 @@ install_software_mac() {
   fi
   if [[ $DEV_TOOLCHAIN == "true" ]]; then
     message "Installing coreutils.."
-    export DOTFILES_BREW_PREFIX_COREUTILS=`brew --prefix coreutils`
+    coreutils=$(brew --prefix coreutils)
+    export DOTFILES_BREW_PREFIX_COREUTILS=$coreutils
     set-config "DOTFILES_BREW_PREFIX_COREUTILS" "$DOTFILES_BREW_PREFIX_COREUTILS" "$DOTFILES_CACHE"
     message "Installing xcode utils.."
     xcode-select --install
-    message "Installing Oh my tmux.."
-    # Oh my tmux
-     cd
-     git clone https://github.com/gpakosz/.tmux.git
-     ln -s -f .tmux/.tmux.conf
-     cp .tmux/.tmux.conf.local .
     # Oh my zsh
     message "Installing Oh my zsh.."
     # Make sure that oh-my-zsh installs files for the current user, not root
@@ -107,19 +99,18 @@ install_software_mac() {
 
 install_custom_zsh_plugins(){
   message "Installing custom ZSH plugins.."
-  git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-  git clone https://github.com/popstas/zsh-command-time.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/command-time
-  git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-  git clone https://github.com/jeffreytse/zsh-vi-mode ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-vi-mode
+  git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting"
+  git clone https://github.com/popstas/zsh-command-time.git "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/command-time"
+  git clone https://github.com/zsh-users/zsh-autosuggestions "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions"
+  git clone https://github.com/jeffreytse/zsh-vi-mode "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-vi-mode"
 }
 
 install_custom_fonts(){
-  message "Installing Powerline Fonts.."
-  git clone https://github.com/powerline/fonts.git --depth=1
-  # install
-  cd fonts
-  ./install.sh
+  message "Installing Hack Nerd Fonts.."
+  git clone https://github.com/ryanoasis/nerd-fonts
+  ./install.sh Hack
+  message "Hack Nerd Fonts installed"
   # clean-up a bit
   cd ..
-  rm -rf fonts
+  rm -rf nerd-fonts 
 }

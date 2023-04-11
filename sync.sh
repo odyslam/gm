@@ -13,10 +13,8 @@ sync(){
 }
 
 dotfiles=(
-  .vimrc
   .zshrc
   .zshenv
-  .tmux.conf.local
   .gitconfig
   .alacritty.yml
   .gitignore
@@ -26,13 +24,14 @@ dotfiles=(
 sync_repo_to_local(){
   announce "Copying system's dotfiles to this repository.."
   message "It will copy the following dotfiles: ${dotfiles[*]}"
-  for dotfile in ${dotfiles[*]}
+  for dotfile in "${dotfiles[@]}"
     do
       cp -rf "${HOME}/${dotfile}" "${dotfile}"
   done
   rm -rf .vim && rm -rf .config/nvim
-  cp -R ~/.vim/ .vim/ 2>/dev/null
   cp -R ~/.config/nvim .config/nvim/
+  cp ~/.local/share/nvim .local/share/nvim
+
 
   message "Updating brew-apps.txt via brew leaves.."
   brew leaves > brew-apps.txt
@@ -40,13 +39,13 @@ sync_repo_to_local(){
 sync_local_to_repo(){
   announce "Copying the dotfiles from this repository over to the system.."
   message "It will copy the following dotfiles: ${dotfiles[*]}"
-  for dotfile in ${dotfiles[*]}
+  for dotfile in "${dotfiles[@]}"
     do
       cp -rf "${dotfile}" "${HOME}/${dotfile}"
   done
   rm -rf ~/.vim && rm -rf ~/.config/nvim
-  cp -R .vim ~/.vim 2>/dev/null
   cp -r .config/nvim/ ~/.config/nvim
+  cp .local/share/vim ~/.local/share/nvim
 
   message "Installing nvim plugins.."
   warning "The error messages are normal, as the plugins haven't been installed yet"

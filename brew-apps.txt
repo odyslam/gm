@@ -29,7 +29,6 @@ python@3.9
 rbenv
 sergiobenitez/osxct/x86_64-unknown-linux-gnu
 shellcheck
-the_silver_searcher
 thefuck
 tmux
 tree

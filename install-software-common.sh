@@ -17,9 +17,7 @@ install_software_common(){
   cd headers && cargo build --release
   cp target/release/headers ~/.cargo/bin/headers
   cd .. && rm -rf headers
-
-  message "Installing cargo-based binaries.."
-  cargo install --force --locked --git https://seed.alt-clients.radicle.xyz/radicle-cli.git radicle-cli
-  cargo install when-cli
-  cargo install mdbook
+  
+  message "Installing Zellij"
+  cargo install --locked zellij
 }
