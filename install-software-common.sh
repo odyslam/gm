@@ -23,4 +23,6 @@ install_software_common(){
 
   message "Installing Astronvim"
   git clone --depth 1 https://github.com/AstroNvim/AstroNvim ~/.config/nvim
+
+  message "Astronvim will automatically install all plugins on first launch. Don't forget to auth Copilot by running ':CopilotAuth'"
 }
