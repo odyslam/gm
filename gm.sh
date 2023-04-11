@@ -126,9 +126,6 @@ fi
 echo
 echo
 
-    /*//////////////////////////////////////////////////////////////
-                      OS-DEPENDENT
-    //////////////////////////////////////////////////////////////*/
 
 if [[ $(uname) == 'Darwin'* ]]; then
   message "MacOS detected"
@@ -154,9 +151,6 @@ if [[ $DEV_TOOLCHAIN == "true" ]]; then
   install_software_eth
   install_software_common
 fi
-    /*//////////////////////////////////////////////////////////////
-                               OS-AGNOSTIC
-    //////////////////////////////////////////////////////////////*/
 
 if [[ $DOTFILES == "true" ]]; then
   message "Installing dotfiles"
