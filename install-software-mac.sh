@@ -107,10 +107,11 @@ install_custom_zsh_plugins(){
 
 install_custom_fonts(){
   message "Installing Hack Nerd Fonts.."
-  git clone https://github.com/ryanoasis/nerd-fonts
-  ./install.sh Hack
+  wget https://github.com/source-foundry/Hack/releases/download/v3.003/Hack-v3.003-ttf.zip -O fonts.zip
+  unzip fonts.zip
+  cp -r ttf/* ~/Library/Fonts/
   message "Hack Nerd Fonts installed"
   # clean-up a bit
-  cd ..
-  rm -rf nerd-fonts 
+  rm fonts.zip
+  rm -rf ttf
 }
